@@ -31,14 +31,14 @@ def clean(messages_lst: list):
     return new_lst
 
 
-num = int(input('Number of messages you would like to download'))
+num = int(input('Number of messages you would like to download '))
 messages = get_messages(CHANNEL_ID)
 last_message_id = messages[-1]['id']
 
-while len(messages) < 70000:
+while len(messages) < num:
     messages = clean(messages)
     messages += get_messages(CHANNEL_ID, last_message_id=last_message_id)
     last_message_id = messages[-1]['id']
 
 with open(f"{CHANNEL_ID}_messages.json", "w") as f:
-    json.dump(messages, f)
+    json.dump(clean(messages), f)
