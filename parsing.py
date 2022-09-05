@@ -5,7 +5,6 @@ from datetime import datetime
 
 load_dotenv()
 parsed_str = ""
-parsed_str_no_end = ""
 MY_USERNAME = os.getenv("MY_USERNAME")
 END_DELIMITER = "<|endoftext|>\n"
 DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
@@ -49,14 +48,9 @@ for file in os.listdir():
             else:
                 message_str = f"[others] {message_content}\n"
             parsed_str += message_str
-            parsed_str_no_end += message_str
             previous_m_ts = current_m_ts
 
         parsed_str += END_DELIMITER
 
-with open('all-messages-endoftext.txt', 'w', encoding="utf-8") as f:
-    f.write(parsed_str[:-1])
-
 with open('all-messages.txt', 'w', encoding="utf-8") as f:
-    f.write(parsed_str_no_end[:-1])
-
+    f.write(parsed_str[:-1])
