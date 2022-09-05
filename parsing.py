@@ -53,4 +53,4 @@ for file in os.listdir():
         parsed_str += END_DELIMITER
 
 with open('data.txt', 'w', encoding="utf-8") as f:
-    f.write(parsed_str)
+    f.write(parsed_str[:-1])
